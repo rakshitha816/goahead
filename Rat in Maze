@@ -1,0 +1,22 @@
+class Solution:
+    def ratInMaze(self, maze):
+        n = len(maze )
+        res = []
+        directions = [ ('D',1,0) , ('L',0,-1) , ('R',0,1) , ('U',-1,0) ]
+        def dfs(r,c,path,visited):
+            if r == n-1 and c == n-1:
+                res.append(path)
+                return
+            for d , row , col in directions:
+                rn = r + row
+                cn = c + col
+                if rn >=0  and rn<n and cn>=0 and cn<n and not visited[rn][cn] and maze[rn][cn] == 1 :
+                    visited[rn][cn] = True
+                    dfs(rn , cn , path + d , visited)
+                    visited[rn][cn] = False
+        if maze[0][0] == 1:
+            visited = [[False]*n for i in range(n)]
+            visited[0][0] = True 
+            dfs(0 ,0 ,"" , visited)
+        res.sort()
+        return res
