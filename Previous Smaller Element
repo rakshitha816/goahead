@@ -1,0 +1,15 @@
+class Solution:
+	def prevSmaller(self, arr):
+	    stack=[]
+	    n=len(arr)
+	    ans=[]
+	    for ind in range(0,n):
+	        curEle=arr[ind]
+	        while(len(stack)!=0 and stack[-1]>=curEle):
+	            stack.pop()
+	        if(len(stack)==0):
+	            ans.append(-1)
+	        else:
+	            ans.append(stack[-1])
+	        stack.append(curEle)
+	    return ans
