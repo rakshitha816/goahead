@@ -1,0 +1,21 @@
+#bfs graph
+class Solution:
+    def breadthFirstSearch(i,visited,adj,ans):
+        q=[i]
+        while(q):
+            node=q.pop(0)
+            ans.append(node)
+            for it in adj[node]:
+                if(visited[it]==0):
+                    visited[it]=1
+                    q.append(it)
+            
+    def bfs(self,adj):
+        vertex=len(adj)
+        ans=[]
+        visited=[0]*vertex
+        for i in range(vertex):
+            if(visited[i]==0):
+                visited[i]=1
+                self.breadthFirstSearch(i,visited,adj,ans)
+        return ans
