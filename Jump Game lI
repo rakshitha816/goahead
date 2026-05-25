@@ -1,0 +1,15 @@
+class Solution:
+    def canReach(self, s: str, minJump: int, maxJump: int) -> bool:
+        n=len(s)
+        far=0
+        q=[0]
+        for i in q:
+            start=max(i+minJump,far)
+            end=min(i+maxJump+1,n)
+            for j in range(start,end):
+                if s[j]=='0':
+                    if j==n-1:
+                        return True
+                    q.append(j)
+            far=i+maxJump+1
+        return n==1
